@@ -14,7 +14,6 @@ class Especialidad(models.Model):
         return self.nombre_completo()
 
 
-
 class Medicos(models.Model):
     name = models.CharField(max_length=30, blank=False)
     last_name = models.CharField(max_length=30, blank=False)
@@ -27,6 +26,7 @@ class Medicos(models.Model):
     def __str__(self):
         return self.nombre_completo()
 
+
 class ObraSocial(models.Model):
     nombre_obrasocial = models.CharField(max_length=50, blank=False)
 
@@ -35,6 +35,7 @@ class ObraSocial(models.Model):
 
     def __str__(self):
         return self.nombre_completo()
+
 
 class Sede(models.Model):
     nombre_sede = models.CharField(max_length=50, blank=False)
@@ -46,9 +47,11 @@ class Sede(models.Model):
     def __str__(self):
         return self.nombre_completo()
 
+
 class User(AbstractUser):
  nro_afiliado=models.CharField(max_length=20,null=False,blank=False)
  obra_social = models.ForeignKey(ObraSocial, null=True, on_delete=models.CASCADE, related_name='obrassociales')
+
 
 class Turnos(models.Model):
     usuario_turno = models.ForeignKey(User, null=False, on_delete= models.CASCADE, related_name='usuariosturnos')
