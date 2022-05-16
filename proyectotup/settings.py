@@ -1,5 +1,8 @@
 from pathlib import Path
+from os import getenv
+from dotenv import load_dotenv
 
+load_dotenv(".env")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3^y-#jtxk71ms9l@=%4s+g@i@uq!+p6ieg_mc5d7=c^a_5_^ex'
+SECRET_KEY = getenv("SECRET_JWT_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -71,11 +74,10 @@ WSGI_APPLICATION = 'proyectotup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'app_turnos',
-        'USER': 'root',
-        'PASSWORD': 'bocateamo',
-        'HOST': 'localhost',
-        'PORT': 3306,
+        'NAME': getenv('DB_DATABASE'),
+        'USER': getenv('DB_USR'),
+        'PASSWORD': getenv('DB_PWD'),
+        'HOST': getenv('DB_HOST'),
     }
 }
 
